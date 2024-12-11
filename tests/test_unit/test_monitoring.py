@@ -19,10 +19,8 @@ def test_monitor_with_io_should_write_predictions_mean_to_db(mocked_read_csv):
                                 'predictions': [12, 14]})
     mocked_read_csv.return_value = predictions
     db_con_str = 'sqlite:///test_db.db'
-    # Start filling expected
-    expected = ...
-    # End filling expected
 
+    expected = pd.DataFrame({'predictions_time': [given_date], 'predictions': [13.]})
     # When
     monitor_with_io(predictions_folder, db_con_str, monitoring_table_name=MONITORING_TABLE_NAME)
     engine = create_engine(db_con_str)
